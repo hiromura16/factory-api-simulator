@@ -20,6 +20,8 @@
 
 ## 操作ガイド
 
+[ひな型の選び方・詳細設定の画面・自分のひな型の作り方](docs/preset-guide.md)
+
 [![ひな型の読込、公開設定と件数、取得例、API公開の開始を示す業務API画面。青い枠は詳細設定。](docs/images/operation-guide.png)](docs/images/operation-guide.png)
 
 1. ひな型を選び、「ひな型を読み込む」を押します。表示中の設定は「編集中の設定」で確認できます。
