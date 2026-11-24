@@ -57,6 +57,38 @@ async function api(
     );
   return v;
 }
+/* 取得例を文字として描画する。リンクや送信ボタンにせず、秘密値も扱わない。 */
+function renderRequestPreview(plan) {
+  const target = $("#requestPreview");
+  target.replaceChildren();
+  if (!plan) return;
+  const profile = plan.profile;
+  target.append(el("p", {},
+    profile.available
+      ? "公開設定: " + profile.profile_id + "（版 " + profile.revision + "） / " +
+        (profile.header_example || "取得時の認証なし") +
+        " / " + (profile.writes_allowed ? "編集用APIは許可設定" : "取得専用")
+      : "この公開設定は未登録です。開始前に登録してください。",
+  ));
+  const lines = plan.resources.flatMap((resource) => [
+    resource.name + "（初期 " + resource.initial_rows + " 件）",
+    plan.method + " " + resource.rest_path,
+    plan.method + " " + resource.odata_path,
+  ]);
+  lines.push(plan.method + " " + plan.metadata_path);
+  target.append(el("pre", {}, lines.join("\n")));
+  target.append(el("p", { class: "muted" },
+    "次ページと差分取得は実際の応答に含まれるリンクを使用します。カーソル有効期限: " +
+    plan.cursor_ttl_seconds + "秒。障害設定: " +
+    (plan.fault_every === null ? "なし" : plan.fault + "（" + plan.fault_every + "要求ごと）"),
+  ));
+}
+
+/* 操作した設定の応答だけを表示し、編集中の別条件へ過去の見本を引き継がない。 */
+function previewIsCurrent(submitted) {
+  return submitted === JSON.stringify(spec);
+}
+
 /* 指定ボタンへ非同期処理を登録する。処理中の二重操作を防ぎ、失敗通知とボタン復帰を共通化する。 */
 function action(
   id,
@@ -582,7 +614,10 @@ async function init() {
     "#preview",
     /* フォーム検証後にプレビュー要求を送り、レコード・異常注入結果・応答JSONを表示する。実際の開始要求は行わない。 */ async () => {
       validated("#specForm");
-      const v = await api("/api/preview", spec);
+      const submitted = JSON.stringify(spec);
+      const v = await api("/api/preview", JSON.parse(submitted));
+      if (!previewIsCurrent(submitted)) return;
+      renderRequestPreview(v.request_preview);
       table(
         $("#previewTable"),
         v.records.map(

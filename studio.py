@@ -200,6 +200,48 @@ def schemas(kind):
     return result
 
 
+def business_request_preview(spec, store):
+    """編集中の設定から取得例を組み立てる。取得APIは呼ばず、秘密値も返さない。"""
+    try:
+        profile, revision = store.profile(spec.profile_id)
+    except KeyError:
+        access = {"profile_id": spec.profile_id, "available": False}
+    else:
+        header = {
+            "none": None,
+            "basic": "Authorization: Basic <認証値>",
+            "bearer": "Authorization: Bearer <トークン>",
+            "api_key": "X-API-Key: <キー>",
+        }[profile.auth_mode]
+        access = {
+            "profile_id": spec.profile_id,
+            "revision": revision,
+            "available": True,
+            "auth_mode": profile.auth_mode,
+            "header_example": header,
+            "writes_allowed": profile.allow_writes,
+        }
+    options = spec.business
+    limit = min(options.page_size, 10)
+    return {
+        "profile": access,
+        "method": "GET",
+        "metadata_path": "/source/odata/$metadata",
+        "resources": [
+            {
+                "name": resource.name,
+                "initial_rows": resource.rows,
+                "rest_path": f"/source/rest/{resource.name}?limit={limit}",
+                "odata_path": f"/source/odata/{resource.name}?$top={limit}",
+            }
+            for resource in options.resources
+        ],
+        "fault": options.fault,
+        "fault_every": options.fault_every if options.fault != "none" else None,
+        "cursor_ttl_seconds": options.cursor_ttl_seconds,
+    }
+
+
 def create_app(kind):
     """保存領域・コントローラー・認証・管理ルートを一つのFastAPIアプリへ束ねる。"""
     root = Path(__file__).resolve().parent
@@ -479,13 +521,16 @@ def create_app(kind):
                     row["_formatted_log"] = driver.log_message(row, offset)
             records.append(row)
             hits.append(trace)
-        return {
+        result = {
             "records": records,
             "anomaly_hits": hits,
             "sequences": offsets,
             "writes": False,
             "validated_spec": spec.model_dump(mode="json"),
         }
+        if kind == "api":
+            result["request_preview"] = business_request_preview(spec, store)
+        return result
 
     # 設定をコントローラーへ渡してバックグラウンド実行を開始する。
     @app.post("/api/start")
