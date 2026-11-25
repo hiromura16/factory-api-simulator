@@ -474,14 +474,17 @@ function description() {
 /* フォーム内の制約違反を探す。該当箇所のdetailsを開いてブラウザーの検証表示を出し、例外で後続操作を止める。 */
 function validated(
   selector,
+  showError = true,
 ) {
   for (const input of $(selector).querySelectorAll("input,select,textarea"))
     if (!input.checkValidity()) {
-      for (let details = input.closest("details"); details;
-        details = details.parentElement.closest("details")) {
-        details.open = true;
+      if (showError) {
+        for (let details = input.closest("details"); details;
+          details = details.parentElement.closest("details")) {
+          details.open = true;
+        }
+        input.reportValidity();
       }
-      input.reportValidity();
       throw new Error("入力を確認してください");
     }
 }
@@ -630,6 +633,24 @@ async function init() {
   render();
   profile = cleanProfile(profiles[0]);
   renderProfile();
+  window.FactoryComparison.mount({
+    app: "api-simulator",
+    listPresets: () => presets,
+    currentSpec: () => {
+      validated("#specForm", false);
+      return copy(spec);
+    },
+    preview: (candidate) => api("/api/preview", candidate),
+    metrics: (spec) => ({
+      "公開するコレクション数": spec.business.resources.length,
+      "初期レコード総数": spec.business.resources.reduce((total, resource) => total + resource.rows, 0),
+      "1ページの件数": spec.business.page_size,
+      "更新周期ごとの変更件数": spec.business.updates_per_tick,
+      "カーソルの有効期間（秒）": spec.business.cursor_ttl_seconds,
+      "異常応答の種類": spec.business.fault,
+      "異常応答の間隔（リクエスト数）": spec.business.fault_every,
+    }),
+  });
   document
     .querySelectorAll("[data-tab]")
     .forEach(
