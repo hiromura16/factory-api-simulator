@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>付属のひな型一覧 | 業務APIシミュレーター</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/help.css">
+  <script src="/static/help.js" defer></script>
+</head>
+<body class="help-page">
+  <a class="help-skip" href="#help-content">本文へ移動</a>
+  <div class="help-top">
+    <a class="help-home" href="/">業務APIシミュレーター</a>
+    <a href="/">アプリに戻る</a>
+  </div>
+  <div class="help-layout">
+    <nav class="help-nav" aria-label="ヘルプ"><a href="/help/index.html">初めて使う</a><a href="/help/presets.html">ひな型を選ぶ・作る</a><a href="/help/templates.html">JSONの書き方</a><a href="/help/settings.html">設定リファレンス</a><a href="/help/api.html">APIの使い方</a><a href="/help/glossary.html">用語集</a><a href="/help/ai.html">AIにひな型を頼む</a><a href="/help/install.html">VMへの導入</a><a href="/help/catalog.html" aria-current="page">付属のひな型一覧</a></nav>
+    <main class="help-content" id="help-content">
+      <nav class="help-outline" aria-label="このページ"><a href="#ひな型ごとの内容">ひな型ごとの内容</a></nav>
+      <div class="help-search" hidden><label for="help-filter">表を検索</label><input id="help-filter" type="search" placeholder="日本語、ID、JSONキー"><p id="help-results" role="status"></p></div>
+      <article><h1>付属のひな型一覧</h1>
+<p>迷ったときは<a href="/help/presets.html">ひな型を選ぶ・作る</a>を参照してください。
+アプリで保存したひな型はアプリの一覧から開きます。</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>表示名</th>
+<th>最大tick数</th>
+<th>想定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#01-normal">01-normal</a></td>
+<td>正常 / 指図API / 固定200件</td>
+<td>手動停止まで</td>
+<td>MES/ERPの定期取得・ページング・差分収集の検証。指図API / 固定200件を想定</td>
+</tr>
+<tr>
+<td><a href="#02-normal">02-normal</a></td>
+<td>正常 / 在庫API</td>
+<td>手動停止まで</td>
+<td>MES/ERPの定期取得・ページング・差分収集の検証。在庫APIを想定</td>
+</tr>
+<tr>
+<td><a href="#03-normal">03-normal</a></td>
+<td>正常 / 複数コレクション</td>
+<td>手動停止まで</td>
+<td>MES/ERPの定期取得・ページング・差分収集の検証。複数コレクションを想定</td>
+</tr>
+<tr>
+<td><a href="#04-normal">04-normal</a></td>
+<td>正常 / 1000件 / ページ50件</td>
+<td>手動停止まで</td>
+<td>MES/ERPの定期取得・ページング・差分収集の検証。1000件 / ページ50件を想定</td>
+</tr>
+<tr>
+<td><a href="#05-normal">05-normal</a></td>
+<td>正常 / 差分更新 / 毎tick10件</td>
+<td>手動停止まで</td>
+<td>MES/ERPの定期取得・ページング・差分収集の検証。差分更新 / 毎tick10件を想定</td>
+</tr>
+<tr>
+<td><a href="#06-normal">06-normal</a></td>
+<td>正常 / 削除通知 / delta</td>
+<td>手動停止まで</td>
+<td>MES/ERPの定期取得・ページング・差分収集の検証。削除通知 / deltaを想定</td>
+</tr>
+<tr>
+<td><a href="#07-normal">07-normal</a></td>
+<td>正常 / 小さいページ / 10件</td>
+<td>手動停止まで</td>
+<td>MES/ERPの定期取得・ページング・差分収集の検証。小さいページ / 10件を想定</td>
+</tr>
+<tr>
+<td><a href="#08-normal">08-normal</a></td>
+<td>正常 / 短いカーソル期限</td>
+<td>手動停止まで</td>
+<td>MES/ERPの定期取得・ページング・差分収集の検証。短いカーソル期限を想定</td>
+</tr>
+<tr>
+<td><a href="#09-normal">09-normal</a></td>
+<td>正常 / 高頻度の更新</td>
+<td>手動停止まで</td>
+<td>MES/ERPの定期取得・ページング・差分収集の検証。高頻度の更新を想定</td>
+</tr>
+<tr>
+<td><a href="#10-normal">10-normal</a></td>
+<td>正常 / 固定マスター</td>
+<td>手動停止まで</td>
+<td>MES/ERPの定期取得・ページング・差分収集の検証。固定マスターを想定</td>
+</tr>
+<tr>
+<td><a href="#11-normal">11-normal</a></td>
+<td>正常 / 任意の項目 / 平坦JSON</td>
+<td>手動停止まで</td>
+<td>MES/ERPの定期取得・ページング・差分収集の検証。任意の項目 / 平坦JSONを想定</td>
+</tr>
+<tr>
+<td><a href="#12-normal">12-normal</a></td>
+<td>正常 / 大量データ / 1万件</td>
+<td>手動停止まで</td>
+<td>MES/ERPの定期取得・ページング・差分収集の検証。大量データ / 1万件を想定</td>
+</tr>
+<tr>
+<td><a href="#13-anomaly">13-anomaly</a></td>
+<td>異常 / 429 Rate Limit</td>
+<td>手動停止まで</td>
+<td>MES/ERPの定期取得・ページング・差分収集の検証。429 Rate Limitを想定</td>
+</tr>
+<tr>
+<td><a href="#14-anomaly">14-anomaly</a></td>
+<td>異常 / 503 Service Unavailable</td>
+<td>手動停止まで</td>
+<td>MES/ERPの定期取得・ページング・差分収集の検証。503 Service Unavailableを想定</td>
+</tr>
+<tr>
+<td><a href="#15-anomaly">15-anomaly</a></td>
+<td>異常 / 401 認証期限切れ</td>
+<td>手動停止まで</td>
+<td>MES/ERPの定期取得・ページング・差分収集の検証。401 認証期限切れを想定</td>
+</tr>
+<tr>
+<td><a href="#16-anomaly">16-anomaly</a></td>
+<td>異常 / 応答遅延</td>
+<td>手動停止まで</td>
+<td>MES/ERPの定期取得・ページング・差分収集の検証。応答遅延を想定</td>
+</tr>
+<tr>
+<td><a href="#17-anomaly">17-anomaly</a></td>
+<td>異常 / ページの重複</td>
+<td>手動停止まで</td>
+<td>MES/ERPの定期取得・ページング・差分収集の検証。ページの重複を想定</td>
+</tr>
+<tr>
+<td><a href="#18-anomaly">18-anomaly</a></td>
+<td>異常 / ページの欠落</td>
+<td>手動停止まで</td>
+<td>MES/ERPの定期取得・ページング・差分収集の検証。ページの欠落を想定</td>
+</tr>
+<tr>
+<td><a href="#19-anomaly">19-anomaly</a></td>
+<td>異常 / JSONの途中切れ</td>
+<td>手動停止まで</td>
+<td>MES/ERPの定期取得・ページング・差分収集の検証。JSONの途中切れを想定</td>
+</tr>
+<tr>
+<td><a href="#20-anomaly">20-anomaly</a></td>
+<td>異常 / カーソル失効</td>
+<td>手動停止まで</td>
+<td>MES/ERPの定期取得・ページング・差分収集の検証。カーソル失効を想定</td>
+</tr>
+<tr>
+<td><a href="#21-anomaly">21-anomaly</a></td>
+<td>異常 / 負の在庫</td>
+<td>手動停止まで</td>
+<td>MES/ERPの定期取得・ページング・差分収集の検証。負の在庫を想定</td>
+</tr>
+<tr>
+<td><a href="#22-anomaly">22-anomaly</a></td>
+<td>異常 / 数量と金額の不一致</td>
+<td>手動停止まで</td>
+<td>MES/ERPの定期取得・ページング・差分収集の検証。数量と金額の不一致を想定</td>
+</tr>
+<tr>
+<td><a href="#23-anomaly">23-anomaly</a></td>
+<td>異常 / 未知の状態</td>
+<td>手動停止まで</td>
+<td>MES/ERPの定期取得・ページング・差分収集の検証。未知の状態を想定</td>
+</tr>
+<tr>
+<td><a href="#24-anomaly">24-anomaly</a></td>
+<td>異常 / 項目の欠落</td>
+<td>手動停止まで</td>
+<td>MES/ERPの定期取得・ページング・差分収集の検証。項目の欠落を想定</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ひな型ごとの内容">ひな型ごとの内容</h2>
+<h3 id="01-normal">01-normal</h3>
+<p><strong>正常 / 指図API / 固定200件</strong> · <a href="/help/preset-files/01-normal.json">JSONをダウンロード</a></p>
+<ul>
+<li><strong>想定</strong>　MES/ERPの定期取得・ページング・差分収集の検証。指図API / 固定200件を想定。</li>
+<li><strong>生成内容・条件</strong>　更新周期1000ms、最大tick数無制限。 ordersを200件で初期化。 1tickごとに各コレクション最大2件を更新。既定ページ100件、カーソル寿命600秒。</li>
+<li><strong>確認事項</strong>　ページ間でIDの欠落・重複がないか、snapshotを保持して全件取得できるかを確認。 最終ページのdeltaリンクで更新と削除を取得。429はRetry-After、期限切れカーソルは再同期を確認。</li>
+<li><strong>実行前</strong>　公開・認証・送信先は別のプロファイルで指定し、保存後に停止・開始して適用。各条件はフォームとJSONで編集可能。</li>
+</ul>
+<h3 id="02-normal">02-normal</h3>
+<p><strong>正常 / 在庫API</strong> · <a href="/help/preset-files/02-normal.json">JSONをダウンロード</a></p>
+<ul>
+<li><strong>想定</strong>　MES/ERPの定期取得・ページング・差分収集の検証。在庫APIを想定。</li>
+<li><strong>生成内容・条件</strong>　更新周期1000ms、最大tick数無制限。 inventoryを200件で初期化。 1tickごとに各コレクション最大2件を更新。既定ページ100件、カーソル寿命600秒。</li>
+<li><strong>確認事項</strong>　ページ間でIDの欠落・重複がないか、snapshotを保持して全件取得できるかを確認。 最終ページのdeltaリンクで更新と削除を取得。429はRetry-After、期限切れカーソルは再同期を確認。</li>
+<li><strong>実行前</strong>　公開・認証・送信先は別のプロファイルで指定し、保存後に停止・開始して適用。各条件はフォームとJSONで編集可能。</li>
+</ul>
+<h3 id="03-normal">03-normal</h3>
+<p><strong>正常 / 複数コレクション</strong> · <a href="/help/preset-files/03-normal.json">JSONをダウンロード</a></p>
+<ul>
+<li><strong>想定</strong>　MES/ERPの定期取得・ページング・差分収集の検証。複数コレクションを想定。</li>
+<li><strong>生成内容・条件</strong>　更新周期1000ms、最大tick数無制限。 ordersを200件で初期化。 inventoryを200件で初期化。 1tickごとに各コレクション最大2件を更新。既定ページ100件、カーソル寿命600秒。</li>
+<li><strong>確認事項</strong>　ページ間でIDの欠落・重複がないか、snapshotを保持して全件取得できるかを確認。 最終ページのdeltaリンクで更新と削除を取得。429はRetry-After、期限切れカーソルは再同期を確認。</li>
+<li><strong>実行前</strong>　公開・認証・送信先は別のプロファイルで指定し、保存後に停止・開始して適用。各条件はフォームとJSONで編集可能。</li>
+</ul>
+<h3 id="04-normal">04-normal</h3>
+<p><strong>正常 / 1000件 / ページ50件</strong> · <a href="/help/preset-files/04-normal.json">JSONをダウンロード</a></p>
+<ul>
+<li><strong>想定</strong>　MES/ERPの定期取得・ページング・差分収集の検証。1000件 / ページ50件を想定。</li>
+<li><strong>生成内容・条件</strong>　更新周期1000ms、最大tick数無制限。 ordersを1000件で初期化。 1tickごとに各コレクション最大2件を更新。既定ページ50件、カーソル寿命600秒。</li>
+<li><strong>確認事項</strong>　ページ間でIDの欠落・重複がないか、snapshotを保持して全件取得できるかを確認。 最終ページのdeltaリンクで更新と削除を取得。429はRetry-After、期限切れカーソルは再同期を確認。</li>
+<li><strong>実行前</strong>　公開・認証・送信先は別のプロファイルで指定し、保存後に停止・開始して適用。各条件はフォームとJSONで編集可能。</li>
+</ul>
+<h3 id="05-normal">05-normal</h3>
+<p><strong>正常 / 差分更新 / 毎tick10件</strong> · <a href="/help/preset-files/05-normal.json">JSONをダウンロード</a></p>
+<ul>
+<li><strong>想定</strong>　MES/ERPの定期取得・ページング・差分収集の検証。差分更新 / 毎tick10件を想定。</li>
+<li><strong>生成内容・条件</strong>　更新周期1000ms、最大tick数無制限。 ordersを200件で初期化。 1tickごとに各コレクション最大10件を更新。既定ページ100件、カーソル寿命600秒。</li>
+<li><strong>確認事項</strong>　ページ間でIDの欠落・重複がないか、snapshotを保持して全件取得できるかを確認。 最終ページのdeltaリンクで更新と削除を取得。429はRetry-After、期限切れカーソルは再同期を確認。</li>
+<li><strong>実行前</strong>　公開・認証・送信先は別のプロファイルで指定し、保存後に停止・開始して適用。各条件はフォームとJSONで編集可能。</li>
+</ul>
+<h3 id="06-normal">06-normal</h3>
+<p><strong>正常 / 削除通知 / delta</strong> · <a href="/help/preset-files/06-normal.json">JSONをダウンロード</a></p>
+<ul>
+<li><strong>想定</strong>　MES/ERPの定期取得・ページング・差分収集の検証。削除通知 / deltaを想定。</li>
+<li><strong>生成内容・条件</strong>　更新周期1000ms、最大tick数無制限。 ordersを200件で初期化。 1tickごとに各コレクション最大2件を更新。既定ページ100件、カーソル寿命600秒。 3tickごとに削除を記録し、deltaへ通知。</li>
+<li><strong>確認事項</strong>　ページ間でIDの欠落・重複がないか、snapshotを保持して全件取得できるかを確認。 最終ページのdeltaリンクで更新と削除を取得。429はRetry-After、期限切れカーソルは再同期を確認。</li>
+<li><strong>実行前</strong>　公開・認証・送信先は別のプロファイルで指定し、保存後に停止・開始して適用。各条件はフォームとJSONで編集可能。</li>
+</ul>
+<h3 id="07-normal">07-normal</h3>
+<p><strong>正常 / 小さいページ / 10件</strong> · <a href="/help/preset-files/07-normal.json">JSONをダウンロード</a></p>
+<ul>
+<li><strong>想定</strong>　MES/ERPの定期取得・ページング・差分収集の検証。小さいページ / 10件を想定。</li>
+<li><strong>生成内容・条件</strong>　更新周期1000ms、最大tick数無制限。 ordersを200件で初期化。 1tickごとに各コレクション最大2件を更新。既定ページ10件、カーソル寿命600秒。</li>
+<li><strong>確認事項</strong>　ページ間でIDの欠落・重複がないか、snapshotを保持して全件取得できるかを確認。 最終ページのdeltaリンクで更新と削除を取得。429はRetry-After、期限切れカーソルは再同期を確認。</li>
+<li><strong>実行前</strong>　公開・認証・送信先は別のプロファイルで指定し、保存後に停止・開始して適用。各条件はフォームとJSONで編集可能。</li>
+</ul>
+<h3 id="08-normal">08-normal</h3>
+<p><strong>正常 / 短いカーソル期限</strong> · <a href="/help/preset-files/08-normal.json">JSONをダウンロード</a></p>
+<ul>
+<li><strong>想定</strong>　MES/ERPの定期取得・ページング・差分収集の検証。短いカーソル期限を想定。</li>
+<li><strong>生成内容・条件</strong>　更新周期1000ms、最大tick数無制限。 ordersを200件で初期化。 1tickごとに各コレクション最大2件を更新。既定ページ100件、カーソル寿命10秒。</li>
+<li><strong>確認事項</strong>　ページ間でIDの欠落・重複がないか、snapshotを保持して全件取得できるかを確認。 最終ページのdeltaリンクで更新と削除を取得。429はRetry-After、期限切れカーソルは再同期を確認。</li>
+<li><strong>実行前</strong>　公開・認証・送信先は別のプロファイルで指定し、保存後に停止・開始して適用。各条件はフォームとJSONで編集可能。</li>
+</ul>
+<h3 id="09-normal">09-normal</h3>
+<p><strong>正常 / 高頻度の更新</strong> · <a href="/help/preset-files/09-normal.json">JSONをダウンロード</a></p>
+<ul>
+<li><strong>想定</strong>　MES/ERPの定期取得・ページング・差分収集の検証。高頻度の更新を想定。</li>
+<li><strong>生成内容・条件</strong>　更新周期100ms、最大tick数無制限。 ordersを200件で初期化。 1tickごとに各コレクション最大2件を更新。既定ページ100件、カーソル寿命600秒。</li>
+<li><strong>確認事項</strong>　ページ間でIDの欠落・重複がないか、snapshotを保持して全件取得できるかを確認。 最終ページのdeltaリンクで更新と削除を取得。429はRetry-After、期限切れカーソルは再同期を確認。</li>
+<li><strong>実行前</strong>　公開・認証・送信先は別のプロファイルで指定し、保存後に停止・開始して適用。各条件はフォームとJSONで編集可能。</li>
+</ul>
+<h3 id="10-normal">10-normal</h3>
+<p><strong>正常 / 固定マスター</strong> · <a href="/help/preset-files/10-normal.json">JSONをダウンロード</a></p>
+<ul>
+<li><strong>想定</strong>　MES/ERPの定期取得・ページング・差分収集の検証。固定マスターを想定。</li>
+<li><strong>生成内容・条件</strong>　更新周期1000ms、最大tick数無制限。 ordersを200件で初期化。 1tickごとに各コレクション最大0件を更新。既定ページ100件、カーソル寿命600秒。</li>
+<li><strong>確認事項</strong>　ページ間でIDの欠落・重複がないか、snapshotを保持して全件取得できるかを確認。 最終ページのdeltaリンクで更新と削除を取得。429はRetry-After、期限切れカーソルは再同期を確認。</li>
+<li><strong>実行前</strong>　公開・認証・送信先は別のプロファイルで指定し、保存後に停止・開始して適用。各条件はフォームとJSONで編集可能。</li>
+</ul>
+<h3 id="11-normal">11-normal</h3>
+<p><strong>正常 / 任意の項目 / 平坦JSON</strong> · <a href="/help/preset-files/11-normal.json">JSONをダウンロード</a></p>
+<ul>
+<li><strong>想定</strong>　MES/ERPの定期取得・ページング・差分収集の検証。任意の項目 / 平坦JSONを想定。</li>
+<li><strong>生成内容・条件</strong>　更新周期1000ms、最大tick数無制限。 ordersを200件で初期化。 1tickごとに各コレクション最大2件を更新。既定ページ100件、カーソル寿命600秒。</li>
+<li><strong>確認事項</strong>　ページ間でIDの欠落・重複がないか、snapshotを保持して全件取得できるかを確認。 最終ページのdeltaリンクで更新と削除を取得。429はRetry-After、期限切れカーソルは再同期を確認。</li>
+<li><strong>実行前</strong>　公開・認証・送信先は別のプロファイルで指定し、保存後に停止・開始して適用。各条件はフォームとJSONで編集可能。</li>
+</ul>
+<h3 id="12-normal">12-normal</h3>
+<p><strong>正常 / 大量データ / 1万件</strong> · <a href="/help/preset-files/12-normal.json">JSONをダウンロード</a></p>
+<ul>
+<li><strong>想定</strong>　MES/ERPの定期取得・ページング・差分収集の検証。大量データ / 1万件を想定。</li>
+<li><strong>生成内容・条件</strong>　更新周期1000ms、最大tick数無制限。 ordersを10000件で初期化。 1tickごとに各コレクション最大2件を更新。既定ページ100件、カーソル寿命600秒。</li>
+<li><strong>確認事項</strong>　ページ間でIDの欠落・重複がないか、snapshotを保持して全件取得できるかを確認。 最終ページのdeltaリンクで更新と削除を取得。429はRetry-After、期限切れカーソルは再同期を確認。</li>
+<li><strong>実行前</strong>　公開・認証・送信先は別のプロファイルで指定し、保存後に停止・開始して適用。各条件はフォームとJSONで編集可能。</li>
+</ul>
+<h3 id="13-anomaly">13-anomaly</h3>
+<p><strong>異常 / 429 Rate Limit</strong> · <a href="/help/preset-files/13-anomaly.json">JSONをダウンロード</a></p>
+<ul>
+<li><strong>想定</strong>　MES/ERPの定期取得・ページング・差分収集の検証。429 Rate Limitを想定。</li>
+<li><strong>生成内容・条件</strong>　更新周期1000ms、最大tick数無制限。 ordersを200件で初期化。 1tickごとに各コレクション最大2件を更新。既定ページ100件、カーソル寿命600秒。 取得APIの3リクエストごとにrate_limitを発生。管理画面の操作は対象外。遅延設定1000ms。</li>
+<li><strong>確認事項</strong>　ページ間でIDの欠落・重複がないか、snapshotを保持して全件取得できるかを確認。 最終ページのdeltaリンクで更新と削除を取得。429はRetry-After、期限切れカーソルは再同期を確認。</li>
+<li><strong>実行前</strong>　公開・認証・送信先は別のプロファイルで指定し、保存後に停止・開始して適用。各条件はフォームとJSONで編集可能。</li>
+</ul>
+<h3 id="14-anomaly">14-anomaly</h3>
+<p><strong>異常 / 503 Service Unavailable</strong> · <a href="/help/preset-files/14-anomaly.json">JSONをダウンロード</a></p>
+<ul>
+<li><strong>想定</strong>　MES/ERPの定期取得・ページング・差分収集の検証。503 Service Unavailableを想定。</li>
+<li><strong>生成内容・条件</strong>　更新周期1000ms、最大tick数無制限。 ordersを200件で初期化。 1tickごとに各コレクション最大2件を更新。既定ページ100件、カーソル寿命600秒。 取得APIの3リクエストごとにserver_errorを発生。管理画面の操作は対象外。遅延設定1000ms。</li>
+<li><strong>確認事項</strong>　ページ間でIDの欠落・重複がないか、snapshotを保持して全件取得できるかを確認。 最終ページのdeltaリンクで更新と削除を取得。429はRetry-After、期限切れカーソルは再同期を確認。</li>
+<li><strong>実行前</strong>　公開・認証・送信先は別のプロファイルで指定し、保存後に停止・開始して適用。各条件はフォームとJSONで編集可能。</li>
+</ul>
+<h3 id="15-anomaly">15-anomaly</h3>
+<p><strong>異常 / 401 認証期限切れ</strong> · <a href="/help/preset-files/15-anomaly.json">JSONをダウンロード</a></p>
+<ul>
+<li><strong>想定</strong>　MES/ERPの定期取得・ページング・差分収集の検証。401 認証期限切れを想定。</li>
+<li><strong>生成内容・条件</strong>　更新周期1000ms、最大tick数無制限。 ordersを200件で初期化。 1tickごとに各コレクション最大2件を更新。既定ページ100件、カーソル寿命600秒。 取得APIの3リクエストごとにunauthorizedを発生。管理画面の操作は対象外。遅延設定1000ms。</li>
+<li><strong>確認事項</strong>　ページ間でIDの欠落・重複がないか、snapshotを保持して全件取得できるかを確認。 最終ページのdeltaリンクで更新と削除を取得。429はRetry-After、期限切れカーソルは再同期を確認。</li>
+<li><strong>実行前</strong>　公開・認証・送信先は別のプロファイルで指定し、保存後に停止・開始して適用。各条件はフォームとJSONで編集可能。</li>
+</ul>
+<h3 id="16-anomaly">16-anomaly</h3>
+<p><strong>異常 / 応答遅延</strong> · <a href="/help/preset-files/16-anomaly.json">JSONをダウンロード</a></p>
+<ul>
+<li><strong>想定</strong>　MES/ERPの定期取得・ページング・差分収集の検証。応答遅延を想定。</li>
+<li><strong>生成内容・条件</strong>　更新周期1000ms、最大tick数無制限。 ordersを200件で初期化。 1tickごとに各コレクション最大2件を更新。既定ページ100件、カーソル寿命600秒。 取得APIの3リクエストごとにdelayを発生。管理画面の操作は対象外。遅延設定1000ms。</li>
+<li><strong>確認事項</strong>　ページ間でIDの欠落・重複がないか、snapshotを保持して全件取得できるかを確認。 最終ページのdeltaリンクで更新と削除を取得。429はRetry-After、期限切れカーソルは再同期を確認。</li>
+<li><strong>実行前</strong>　公開・認証・送信先は別のプロファイルで指定し、保存後に停止・開始して適用。各条件はフォームとJSONで編集可能。</li>
+</ul>
+<h3 id="17-anomaly">17-anomaly</h3>
+<p><strong>異常 / ページの重複</strong> · <a href="/help/preset-files/17-anomaly.json">JSONをダウンロード</a></p>
+<ul>
+<li><strong>想定</strong>　MES/ERPの定期取得・ページング・差分収集の検証。ページの重複を想定。</li>
+<li><strong>生成内容・条件</strong>　更新周期1000ms、最大tick数無制限。 ordersを200件で初期化。 1tickごとに各コレクション最大2件を更新。既定ページ100件、カーソル寿命600秒。 取得APIの3リクエストごとにduplicate_pageを発生。管理画面の操作は対象外。遅延設定1000ms。</li>
+<li><strong>確認事項</strong>　ページ間でIDの欠落・重複がないか、snapshotを保持して全件取得できるかを確認。 最終ページのdeltaリンクで更新と削除を取得。429はRetry-After、期限切れカーソルは再同期を確認。</li>
+<li><strong>実行前</strong>　公開・認証・送信先は別のプロファイルで指定し、保存後に停止・開始して適用。各条件はフォームとJSONで編集可能。</li>
+</ul>
+<h3 id="18-anomaly">18-anomaly</h3>
+<p><strong>異常 / ページの欠落</strong> · <a href="/help/preset-files/18-anomaly.json">JSONをダウンロード</a></p>
+<ul>
+<li><strong>想定</strong>　MES/ERPの定期取得・ページング・差分収集の検証。ページの欠落を想定。</li>
+<li><strong>生成内容・条件</strong>　更新周期1000ms、最大tick数無制限。 ordersを200件で初期化。 1tickごとに各コレクション最大2件を更新。既定ページ100件、カーソル寿命600秒。 取得APIの3リクエストごとにskip_pageを発生。管理画面の操作は対象外。遅延設定1000ms。</li>
+<li><strong>確認事項</strong>　ページ間でIDの欠落・重複がないか、snapshotを保持して全件取得できるかを確認。 最終ページのdeltaリンクで更新と削除を取得。429はRetry-After、期限切れカーソルは再同期を確認。</li>
+<li><strong>実行前</strong>　公開・認証・送信先は別のプロファイルで指定し、保存後に停止・開始して適用。各条件はフォームとJSONで編集可能。</li>
+</ul>
+<h3 id="19-anomaly">19-anomaly</h3>
+<p><strong>異常 / JSONの途中切れ</strong> · <a href="/help/preset-files/19-anomaly.json">JSONをダウンロード</a></p>
+<ul>
+<li><strong>想定</strong>　MES/ERPの定期取得・ページング・差分収集の検証。JSONの途中切れを想定。</li>
+<li><strong>生成内容・条件</strong>　更新周期1000ms、最大tick数無制限。 ordersを200件で初期化。 1tickごとに各コレクション最大2件を更新。既定ページ100件、カーソル寿命600秒。 取得APIの3リクエストごとにtruncate_jsonを発生。管理画面の操作は対象外。遅延設定1000ms。</li>
+<li><strong>確認事項</strong>　ページ間でIDの欠落・重複がないか、snapshotを保持して全件取得できるかを確認。 最終ページのdeltaリンクで更新と削除を取得。429はRetry-After、期限切れカーソルは再同期を確認。</li>
+<li><strong>実行前</strong>　公開・認証・送信先は別のプロファイルで指定し、保存後に停止・開始して適用。各条件はフォームとJSONで編集可能。</li>
+</ul>
+<h3 id="20-anomaly">20-anomaly</h3>
+<p><strong>異常 / カーソル失効</strong> · <a href="/help/preset-files/20-anomaly.json">JSONをダウンロード</a></p>
+<ul>
+<li><strong>想定</strong>　MES/ERPの定期取得・ページング・差分収集の検証。カーソル失効を想定。</li>
+<li><strong>生成内容・条件</strong>　更新周期1000ms、最大tick数無制限。 ordersを200件で初期化。 1tickごとに各コレクション最大2件を更新。既定ページ100件、カーソル寿命600秒。 取得APIの3リクエストごとにcursor_expiredを発生。管理画面の操作は対象外。遅延設定1000ms。</li>
+<li><strong>確認事項</strong>　ページ間でIDの欠落・重複がないか、snapshotを保持して全件取得できるかを確認。 最終ページのdeltaリンクで更新と削除を取得。429はRetry-After、期限切れカーソルは再同期を確認。</li>
+<li><strong>実行前</strong>　公開・認証・送信先は別のプロファイルで指定し、保存後に停止・開始して適用。各条件はフォームとJSONで編集可能。</li>
+</ul>
+<h3 id="21-anomaly">21-anomaly</h3>
+<p><strong>異常 / 負の在庫</strong> · <a href="/help/preset-files/21-anomaly.json">JSONをダウンロード</a></p>
+<ul>
+<li><strong>想定</strong>　MES/ERPの定期取得・ページング・差分収集の検証。負の在庫を想定。</li>
+<li><strong>生成内容・条件</strong>　更新周期1000ms、最大tick数無制限。 inventoryを200件で初期化。 1tickごとに各コレクション最大2件を更新。既定ページ100件、カーソル寿命600秒。 項目on_handへset、値=-10を生成位置20〜39で適用。異常後の型検証を迂回=いいえ。</li>
+<li><strong>確認事項</strong>　ページ間でIDの欠落・重複がないか、snapshotを保持して全件取得できるかを確認。 最終ページのdeltaリンクで更新と削除を取得。429はRetry-After、期限切れカーソルは再同期を確認。</li>
+<li><strong>実行前</strong>　公開・認証・送信先は別のプロファイルで指定し、保存後に停止・開始して適用。各条件はフォームとJSONで編集可能。</li>
+</ul>
+<h3 id="22-anomaly">22-anomaly</h3>
+<p><strong>異常 / 数量と金額の不一致</strong> · <a href="/help/preset-files/22-anomaly.json">JSONをダウンロード</a></p>
+<ul>
+<li><strong>想定</strong>　MES/ERPの定期取得・ページング・差分収集の検証。数量と金額の不一致を想定。</li>
+<li><strong>生成内容・条件</strong>　更新周期1000ms、最大tick数無制限。 ordersを200件で初期化。 1tickごとに各コレクション最大2件を更新。既定ページ100件、カーソル寿命600秒。 項目amountへadd、値='0.01'を生成位置20〜39で適用。異常後の型検証を迂回=いいえ。</li>
+<li><strong>確認事項</strong>　ページ間でIDの欠落・重複がないか、snapshotを保持して全件取得できるかを確認。 最終ページのdeltaリンクで更新と削除を取得。429はRetry-After、期限切れカーソルは再同期を確認。</li>
+<li><strong>実行前</strong>　公開・認証・送信先は別のプロファイルで指定し、保存後に停止・開始して適用。各条件はフォームとJSONで編集可能。</li>
+</ul>
+<h3 id="23-anomaly">23-anomaly</h3>
+<p><strong>異常 / 未知の状態</strong> · <a href="/help/preset-files/23-anomaly.json">JSONをダウンロード</a></p>
+<ul>
+<li><strong>想定</strong>　MES/ERPの定期取得・ページング・差分収集の検証。未知の状態を想定。</li>
+<li><strong>生成内容・条件</strong>　更新周期1000ms、最大tick数無制限。 ordersを200件で初期化。 1tickごとに各コレクション最大2件を更新。既定ページ100件、カーソル寿命600秒。 項目statusへset、値='UNKNOWN'を生成位置20〜39で適用。異常後の型検証を迂回=いいえ。</li>
+<li><strong>確認事項</strong>　ページ間でIDの欠落・重複がないか、snapshotを保持して全件取得できるかを確認。 最終ページのdeltaリンクで更新と削除を取得。429はRetry-After、期限切れカーソルは再同期を確認。</li>
+<li><strong>実行前</strong>　公開・認証・送信先は別のプロファイルで指定し、保存後に停止・開始して適用。各条件はフォームとJSONで編集可能。</li>
+</ul>
+<h3 id="24-anomaly">24-anomaly</h3>
+<p><strong>異常 / 項目の欠落</strong> · <a href="/help/preset-files/24-anomaly.json">JSONをダウンロード</a></p>
+<ul>
+<li><strong>想定</strong>　MES/ERPの定期取得・ページング・差分収集の検証。項目の欠落を想定。</li>
+<li><strong>生成内容・条件</strong>　更新周期1000ms、最大tick数無制限。 ordersを200件で初期化。 1tickごとに各コレクション最大2件を更新。既定ページ100件、カーソル寿命600秒。 項目quantityへomit、値=Noneを生成位置20〜39で適用。異常後の型検証を迂回=いいえ。</li>
+<li><strong>確認事項</strong>　ページ間でIDの欠落・重複がないか、snapshotを保持して全件取得できるかを確認。 最終ページのdeltaリンクで更新と削除を取得。429はRetry-After、期限切れカーソルは再同期を確認。</li>
+<li><strong>実行前</strong>　公開・認証・送信先は別のプロファイルで指定し、保存後に停止・開始して適用。各条件はフォームとJSONで編集可能。</li>
+</ul>
+</article>
+    </main>
+  </div>
+</body>
+</html>

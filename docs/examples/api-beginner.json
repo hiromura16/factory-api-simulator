@@ -1,0 +1,128 @@
+{
+  "name": "業務API / 製造指図と在庫 / 50件ページ",
+  "description": "【想定】ERPの製造指図APIと在庫APIを、収集側がページング＋差分で取得する。",
+  "interval_ms": 2000,
+  "generator": {
+    "run_key": "erp-orders-001",
+    "seed": 21,
+    "parameters": {
+      "products": [
+        "P-100",
+        "P-200",
+        "P-300"
+      ]
+    },
+    "fields": [
+      {
+        "name": "order_no",
+        "data_type": "integer",
+        "generator": "sequence",
+        "start": 1
+      },
+      {
+        "name": "order_code",
+        "data_type": "string",
+        "generator": "template",
+        "template": "WO-{order_no:06d}",
+        "length": 16
+      },
+      {
+        "name": "product_id",
+        "data_type": "string",
+        "generator": "choice",
+        "choices": "$products",
+        "length": 16
+      },
+      {
+        "name": "quantity",
+        "data_type": "integer",
+        "generator": "integer",
+        "minimum": 10,
+        "maximum": 500
+      },
+      {
+        "name": "status",
+        "data_type": "string",
+        "generator": "choice",
+        "choices": [
+          "planned",
+          "running",
+          "done"
+        ],
+        "weights": [
+          30,
+          50,
+          20
+        ],
+        "length": 16
+      },
+      {
+        "name": "due_date",
+        "data_type": "datetime",
+        "generator": "timestamp",
+        "start": "2026-12-05T17:00:00+09:00",
+        "step": 3600
+      }
+    ]
+  },
+  "business": {
+    "resources": [
+      {
+        "name": "orders",
+        "rows": 300,
+        "generator": null
+      },
+      {
+        "name": "inventory",
+        "rows": 60,
+        "generator": {
+          "run_key": "erp-inventory-001",
+          "seed": 22,
+          "fields": [
+            {
+              "name": "item_no",
+              "data_type": "integer",
+              "generator": "sequence",
+              "start": 1
+            },
+            {
+              "name": "item_code",
+              "data_type": "string",
+              "generator": "template",
+              "template": "ITEM-{item_no:04d}",
+              "length": 16
+            },
+            {
+              "name": "qty_on_hand",
+              "data_type": "integer",
+              "generator": "integer",
+              "minimum": 0,
+              "maximum": 1000
+            },
+            {
+              "name": "reserved",
+              "data_type": "integer",
+              "generator": "integer",
+              "minimum": 0,
+              "maximum": 100
+            },
+            {
+              "name": "available",
+              "data_type": "integer",
+              "generator": "difference",
+              "sources": [
+                "qty_on_hand",
+                "reserved"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "updates_per_tick": 3,
+    "page_size": 50,
+    "cursor_ttl_seconds": 600,
+    "fault": "none"
+  },
+  "max_ticks": 2
+}
