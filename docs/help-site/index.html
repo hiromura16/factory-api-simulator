@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>初めて使う | 業務APIシミュレーター</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/help.css">
+  <script src="/static/help.js" defer></script>
+</head>
+<body class="help-page">
+  <a class="help-skip" href="#help-content">本文へ移動</a>
+  <div class="help-top">
+    <a class="help-home" href="/">業務APIシミュレーター</a>
+    <a href="/">アプリに戻る</a>
+  </div>
+  <div class="help-layout">
+    <nav class="help-nav" aria-label="ヘルプ"><a href="/help/index.html" aria-current="page">初めて使う</a><a href="/help/presets.html">ひな型を選ぶ・作る</a><a href="/help/templates.html">JSONの書き方</a><a href="/help/settings.html">設定リファレンス</a><a href="/help/api.html">APIの使い方</a><a href="/help/glossary.html">用語集</a><a href="/help/ai.html">AIにひな型を頼む</a><a href="/help/mcp.html">CLI・MCP</a><a href="/help/install.html">VMへの導入</a><a href="/help/catalog.html">付属のひな型一覧</a></nav>
+    <main class="help-content" id="help-content">
+      <nav class="help-outline" aria-label="このページ"><a href="#最初に試すこと">最初に試すこと</a><a href="#よくある質問">よくある質問</a><a href="#停止と再起動">停止と再起動</a><a href="#想定した結果が出ないとき">想定した結果が出ないとき</a><a href="#収集で使うidと更新の確認">収集で使うIDと更新の確認</a><a href="#次に読む">次に読む</a></nav>
+      <article><h1>業務APIシミュレーター 操作マニュアル</h1>
+<p>収集側が、RESTまたはODataから作業指図や在庫を定期取得できるか検証します。アプリが合成データをSQLiteへ保存し、収集側はHTTP GETで読み取ります。</p>
+<h2 id="最初に試すこと">最初に試すこと</h2>
+<p><strong>作業指図20件を5件ずつ取得する</strong>。4ページをたどって異なるIDを20件取得でき、最終ページに次回の差分取得用リンクが表示されます。</p>
+<p><a href="/help/install.html">Docker Compose導入手順</a>で準備し、VMで <code>http://127.0.0.1:3641/</code> を開きます。</p>
+<p>コレクションは同じ種類のデータの集まりです。ここでは作業指図の <code>orders</code> を使います。ページは一度に返す件数のまとまりで、次のページのリンクをたどると残りが取れます。</p>
+<ol>
+<li>「正常 / 指図API / 固定200件」を読み込みます。「詳細設定」で <code>orders</code> の生成レコード数を <code>20</code>、更新周期ごとの変更件数を <code>0</code> にします。</li>
+<li>基本設定で1ページの件数を <code>5</code> にして「取得例を見る」を押します。RESTの例に <code>orders</code> と <code>limit=5</code> が出ます。</li>
+<li>「API公開を開始」を押し、アプリと同じアドレスの <code>/source/rest/orders?limit=5</code> を開きます。認証付きなら取得用プロファイルの指定に従います。</li>
+<li>応答の <code>next</code> を順に開き、4ページのIDを照合します。最後の <code>delta</code> は差分試験で使うため控えます。終わったら「実行状況・取得方法」で停止します。</li>
+</ol>
+<p><a href="/help/images/operation-guide.png"><img src="/help/images/operation-guide.png" alt="最初の操作と確認箇所" loading="lazy" /></a></p>
+<h2 id="よくある質問">よくある質問</h2>
+<h3 id="restとodataはどちらを選びますか">RESTとODataはどちらを選びますか？</h3>
+<p>使う収集ツールに合わせます。RESTは <code>limit</code> と <code>next</code>、ODataは <code>$top</code> と <code>@odata.nextLink</code> です。同じコレクションで比較できます。</p>
+<h3 id="401はどこを直せばよいですか">401はどこを直せばよいですか？</h3>
+<p>取得用の認証方式とヘッダーを照合します。管理画面を開けることだけでは取得用認証は確認できません。</p>
+<h3 id="410が出て次のペ-ジを読めません">410が出て次のページを読めません</h3>
+<p>継続用カーソルの期限切れです。最初の取得URLから取り直します。</p>
+<h2 id="停止と再起動">停止と再起動</h2>
+<p>「実行状況・取得方法」で停止します。再起動時は停止状態で、設定とSQLiteのデータはボリュームに残ります。公開再開時は対象コレクションと認証を確認します。</p>
+<h2 id="想定した結果が出ないとき">想定した結果が出ないとき</h2>
+<p>画面が開くのに収集できない場合は、公開を開始したか、コレクション名と認証が一致するかを確認します。429応答のひな型では <code>Retry-After</code> と収集側の再試行を照合します。</p>
+<h2 id="収集で使うidと更新の確認">収集で使うIDと更新の確認</h2>
+<p>行の <code>id</code> は公開APIが決定的に割り当てる32桁のキーです。同名の生成項目を作っても、公開データではそのキーが使われます。業務側の番号が必要な場合は <code>order_no</code> のような別のキーを定義します。周期更新の対象行では、選択肢や分布から作る値も変わり得ます。変えてはいけない番号は固定値か安定した識別子から生成します。</p>
+<h2 id="次に読む">次に読む</h2>
+<ul>
+<li><a href="/help/presets.html">ひな型を選ぶ・作る</a></li>
+<li><a href="/help/settings.html">設定リファレンス</a></li>
+<li><a href="/help/templates.html">JSONの書き方</a></li>
+<li><a href="/help/api.html">APIの使い方</a></li>
+<li><a href="/help/glossary.html">用語集</a></li>
+</ul>
+</article>
+    </main>
+  </div>
+</body>
+</html>
