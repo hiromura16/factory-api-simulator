@@ -68,16 +68,16 @@ def test_public_openapi_lists_query_names_and_unique_write_operations():
     assert "201" in paths["/source/rest/{name}"]["post"]["responses"]
 
 
-def test_rest_writes_keep_their_http_status_and_etag_contract():
+def test_rest_writes_keep_their_http_status_and_etag_contract(confirmed_start):
     app = create_app("api")
     with TestClient(app) as client:
         assert (
             client.post("/api/profiles", json={"allow_writes": True}).status_code == 200
         )
         assert (
-            client.post(
-                "/api/start",
-                json={
+            confirmed_start(
+                client,
+                {
                     "max_ticks": 1,
                     "business": {
                         "updates_per_tick": 0,

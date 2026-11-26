@@ -40,7 +40,7 @@ async function api(
   path,
   body,
 ) {
-  const r = await fetch(
+  const r = await fetchWithOperationConfirmation(
     path,
     body === undefined
       ? {}
@@ -50,7 +50,9 @@ async function api(
           body: JSON.stringify(body),
         },
   );
-  return readApiJson(r);
+  const data = await readApiJson(r);
+  showPreviewWarnings(path, data);
+  return data;
 }
 /* 取得例を文字として描画する。リンクや送信ボタンにせず、秘密値も扱わない。 */
 function renderRequestPreview(plan) {
